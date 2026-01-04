@@ -1,9 +1,14 @@
+import ContactForm from "./components/ContactForm";
+
 function App() {
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
-      <h1>WANDERFEST TOURLINE</h1>
-      <p>Baseline deployment test</p>
-    </div>
+    <>
+      <h1 style={{ textAlign: "center", marginTop: "40px" }}>
+        WANDERFEST TOURLINE
+      </h1>
+
+      <ContactForm />
+    </>
   );
 }
 

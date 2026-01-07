@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div
+      className="fade-in"
       style={{
         minHeight: "90vh",
         backgroundImage:
@@ -25,38 +26,19 @@ export default function Home() {
           maxWidth: "700px",
         }}
       >
-        <h1 style={{ fontSize: "42px", marginBottom: "10px" }}>
-          WANDERFEST TOURLINE
-        </h1>
+        <h1>WANDERFEST TOURLINE</h1>
+        <p>Explore Ooty, Coonoor, Mysore & more</p>
 
-        <p style={{ fontSize: "18px", marginBottom: "30px" }}>
-          Explore Ooty, Coonoor, Mysore & more with comfort and trust
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "15px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <a
-            href="tel:7904579099"
-            style={btnStyle("#0d6efd")}
-          >
-            Call Now
-          </a>
-
+        <div style={{ marginTop: "20px" }}>
+          <a href="tel:7904579099" style={btn("#0d6efd")}>Call Now</a>{" "}
           <a
             href="https://wa.me/917904579099"
             target="_blank"
-            style={btnStyle("#25D366")}
+            style={btn("#25D366")}
           >
             WhatsApp
-          </a>
-
-          <Link to="/tours" style={btnStyle("#ff9800")}>
+          </a>{" "}
+          <Link to="/tours" style={btn("#ff9800")}>
             View Packages
           </Link>
         </div>
@@ -65,13 +47,14 @@ export default function Home() {
   );
 }
 
-function btnStyle(bg) {
+function btn(color) {
   return {
-    backgroundColor: bg,
+    backgroundColor: color,
     color: "white",
-    padding: "12px 22px",
+    padding: "12px 20px",
     borderRadius: "6px",
     textDecoration: "none",
-    fontWeight: "500",
+    margin: "5px",
+    display: "inline-block",
   };
 }

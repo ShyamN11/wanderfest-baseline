@@ -1,73 +1,47 @@
-export default function Contact() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+import ContactForm from "../components/ContactForm";
 
-    const name = e.target.name.value;
-    const phone = e.target.phone.value;
-    const message = e.target.message.value;
-
-    const whatsappText = `Name: ${name}%0APhone: ${phone}%0AMessage: ${message}`;
-
-    window.open(
-      `https://wa.me/917904579099?text=${whatsappText}`,
-      "_blank"
-    );
-  };
-
+function Contact() {
   return (
-    <div style={{ padding: "40px", maxWidth: "600px", margin: "auto" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-        Contact Wanderfest Tourline
-      </h2>
+    <div style={{ padding: "40px" }}>
+      <h1>Contact Us</h1>
+      <p>Call or WhatsApp us for bookings</p>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          required
-          style={inputStyle}
-        />
+      <div style={{ marginBottom: "20px" }}>
+        <a href="tel:8807509155" style={callBtn}>
+          📞 Call
+        </a>
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
-          required
-          style={inputStyle}
-        />
+        <a
+          href="https://wa.me/917904579099"
+          target="_blank"
+          rel="noreferrer"
+          style={whatsappBtn}
+        >
+          💬 WhatsApp
+        </a>
+      </div>
 
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="4"
-          required
-          style={inputStyle}
-        />
-
-        <button type="submit" style={btnStyle}>
-          Send Enquiry via WhatsApp
-        </button>
-      </form>
+      {/* CONTACT FORM HERE 👇 */}
+      <ContactForm />
     </div>
   );
 }
 
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "12px",
+const callBtn = {
+  marginRight: "15px",
+  padding: "10px 18px",
+  background: "#2563eb",
+  color: "white",
   borderRadius: "6px",
-  border: "1px solid #ccc",
+  textDecoration: "none",
 };
 
-const btnStyle = {
-  width: "100%",
-  padding: "12px",
-  backgroundColor: "#25D366",
+const whatsappBtn = {
+  padding: "10px 18px",
+  background: "#22c55e",
   color: "white",
-  border: "none",
   borderRadius: "6px",
-  fontSize: "16px",
-  cursor: "pointer",
+  textDecoration: "none",
 };
+
+export default Contact;

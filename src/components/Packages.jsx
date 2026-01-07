@@ -23,7 +23,7 @@ const packages = [
 
 export default function Packages() {
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="fade-in" style={{ padding: "40px" }}>
       <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
         Our Tour Packages
       </h2>
@@ -38,11 +38,13 @@ export default function Packages() {
         {packages.map((pkg) => (
           <div
             key={pkg.id}
+            className="fade-in card-hover"
             style={{
               border: "1px solid #ddd",
               borderRadius: "10px",
               overflow: "hidden",
               boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+              backgroundColor: "#fff",
             }}
           >
             <img
@@ -56,13 +58,14 @@ export default function Packages() {
             />
 
             <div style={{ padding: "15px" }}>
-              <h3>{pkg.title}</h3>
-              <p style={{ fontWeight: "bold" }}>{pkg.price}</p>
+              <h3 style={{ marginBottom: "8px" }}>{pkg.title}</h3>
+              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                {pkg.price}
+              </p>
 
               <Link to={`/tour/${pkg.id}`}>
                 <button
                   style={{
-                    marginTop: "10px",
                     padding: "10px",
                     width: "100%",
                     background: "#ff9800",
@@ -70,6 +73,7 @@ export default function Packages() {
                     color: "white",
                     cursor: "pointer",
                     borderRadius: "5px",
+                    fontWeight: "bold",
                   }}
                 >
                   View Itinerary

@@ -5,6 +5,7 @@ import Packages from "./components/Packages";
 import Home from "./pages/Home";
 import TourDetails from "./pages/TourDetails";
 import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact";
 import FloatingButtons from "./components/FloatingButtons";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/tours" element={<Packages />} />
         <Route path="/tour/:id" element={<TourDetails />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       <FloatingButtons />

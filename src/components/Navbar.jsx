@@ -18,6 +18,7 @@ export default function Navbar() {
         <Link to="/" style={linkStyle}>Home</Link>
         <Link to="/tours" style={linkStyle}>Tours</Link>
         <Link to="/gallery" style={linkStyle}>Gallery</Link>
+        <Link to="/contact" style={linkStyle}>Contact</Link>
       </div>
     </nav>
   );

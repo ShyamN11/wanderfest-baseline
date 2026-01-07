@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Packages from "./components/Packages";
 import Home from "./pages/Home";
 import TourDetails from "./pages/TourDetails";
+import FloatingButtons from "./components/FloatingButtons";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Route path="/tours" element={<Packages />} />
         <Route path="/tour/:id" element={<TourDetails />} />
       </Routes>
+
+      <FloatingButtons />
     </>
   );
 }

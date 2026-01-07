@@ -7,72 +7,55 @@ function TourDetails() {
   const tour = tours.find((t) => t.slug === slug);
 
   if (!tour) {
-    return <h2 style={{ padding: "40px" }}>Tour not found</h2>;
+    return (
+      <div style={{ padding: "40px", textAlign: "center" }}>
+        <h2>Tour not found</h2>
+        <Link to="/tours">← Back to Packages</Link>
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "40px", maxWidth: "900px", margin: "auto" }}>
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
-        {tour.title}
-      </h1>
+    <div style={{ maxWidth: "900px", margin: "40px auto", padding: "20px" }}>
+      {/* IMAGE */}
+      <img
+        src={tour.image}
+        alt={tour.title}
+        style={{
+          width: "100%",
+          maxHeight: "400px",
+          objectFit: "cover",
+          borderRadius: "10px",
+          marginBottom: "20px",
+        }}
+      />
 
-      <h2 style={{ color: "#0f172a", marginBottom: "20px" }}>
-        {tour.price}
-      </h2>
+      {/* TITLE */}
+      <h1>{tour.title}</h1>
 
-      <ul style={{ marginBottom: "30px" }}>
-        {tour.days.map((day, index) => (
-          <li key={index} style={{ marginBottom: "8px" }}>
-            {day}
-          </li>
+      {/* PRICE */}
+      <h3>{tour.price}</h3>
+
+      {/* ITINERARY */}
+      <ul>
+        {tour.itinerary.map((day, index) => (
+          <li key={index}>{day}</li>
         ))}
       </ul>
 
-      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+      {/* ACTIONS */}
+      <p>
         <a
           href="https://wa.me/917904579099"
           target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            backgroundColor: "#22c55e",
-            color: "white",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "600",
-          }}
+          rel="noreferrer"
+          style={{ color: "green", fontWeight: "bold" }}
         >
           Book on WhatsApp
         </a>
+      </p>
 
-        <a
-          href="tel:8807509155"
-          style={{
-            backgroundColor: "#2563eb",
-            color: "white",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "600",
-          }}
-        >
-          Call Now
-        </a>
-
-        <Link
-          to="/tours"
-          style={{
-            backgroundColor: "#e5e7eb",
-            color: "#111827",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "600",
-          }}
-        >
-          ← Back to Packages
-        </Link>
-      </div>
+      <Link to="/tours">← Back to Packages</Link>
     </div>
   );
 }

@@ -1,65 +1,80 @@
 import { useParams, Link } from "react-router-dom";
+import tours from "../data/tours";
 
-const tours = {
-  ooty3d2n: {
-    title: "Ooty • Coonoor • Pykara (3D / 2N)",
-    price: "₹7,999",
-    days: [
-      "Day 1: Ooty sightseeing",
-      "Day 2: Coonoor & Pykara",
-      "Day 3: Departure",
-    ],
-  },
-  ooty4d3n: {
-    title: "Ooty • Coonoor • Pykara • Mudumalai • Mysore",
-    price: "₹11,999",
-    days: [
-      "Day 1: Ooty",
-      "Day 2: Coonoor",
-      "Day 3: Mudumalai & Mysore",
-      "Day 4: Departure",
-    ],
-  },
-  ootyisha: {
-    title: "Ooty • Pykara • Coonoor • Isha",
-    price: "₹9,999",
-    days: [
-      "Day 1: Ooty",
-      "Day 2: Pykara & Coonoor",
-      "Day 3: Isha visit",
-    ],
-  },
-};
+function TourDetails() {
+  const { slug } = useParams();
 
-export default function TourDetails() {
-  const { id } = useParams();
-  const tour = tours[id];
+  const tour = tours.find((t) => t.slug === slug);
 
   if (!tour) {
-    return <h2>Tour not found</h2>;
+    return <h2 style={{ padding: "40px" }}>Tour not found</h2>;
   }
 
   return (
-    <div className="fade-in" style={{ padding: "40px", maxWidth: "800px", margin: "auto" }}>
-      <h1>{tour.title}</h1>
-      <h3>{tour.price}</h3>
+    <div style={{ padding: "40px", maxWidth: "900px", margin: "auto" }}>
+      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>
+        {tour.title}
+      </h1>
 
-      <ul>
-        {tour.days.map((day, i) => (
-          <li key={i}>{day}</li>
+      <h2 style={{ color: "#0f172a", marginBottom: "20px" }}>
+        {tour.price}
+      </h2>
+
+      <ul style={{ marginBottom: "30px" }}>
+        {tour.days.map((day, index) => (
+          <li key={index} style={{ marginBottom: "8px" }}>
+            {day}
+          </li>
         ))}
       </ul>
 
-      <a
-        href="https://wa.me/917904579099"
-        target="_blank"
-        style={{ color: "green", fontWeight: "bold" }}
-      >
-        Book on WhatsApp
-      </a>
+      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+        <a
+          href="https://wa.me/917904579099"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            backgroundColor: "#22c55e",
+            color: "white",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          Book on WhatsApp
+        </a>
 
-      <br />
-      <Link to="/tours">← Back to Packages</Link>
+        <a
+          href="tel:8807509155"
+          style={{
+            backgroundColor: "#2563eb",
+            color: "white",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          Call Now
+        </a>
+
+        <Link
+          to="/tours"
+          style={{
+            backgroundColor: "#e5e7eb",
+            color: "#111827",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: "600",
+          }}
+        >
+          ← Back to Packages
+        </Link>
+      </div>
     </div>
   );
 }
+
+export default TourDetails;

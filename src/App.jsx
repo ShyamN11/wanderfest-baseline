@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-
 import Navbar from "./components/Navbar";
-import Packages from "./components/Packages";
 import Home from "./pages/Home";
+import Tours from "./pages/Tours";
 import TourDetails from "./pages/TourDetails";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
-import FloatingButtons from "./components/FloatingButtons";
 
 function App() {
   return (
@@ -15,13 +13,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tours" element={<Packages />} />
-        <Route path="/tour/:id" element={<TourDetails />} />
+        <Route path="/tours" element={<Tours />} />
+        <Route path="/tour/:slug" element={<TourDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-
-      <FloatingButtons />
     </>
   );
 }

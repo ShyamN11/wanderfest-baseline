@@ -1,34 +1,32 @@
 import { Link } from "react-router-dom";
 import heroImg from "../assets/hero/hero.jpg";
 
+
 function Home() {
   return (
     <div
       style={{
         minHeight: "90vh",
-        backgroundImage: `
-          linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-          url(${heroImg})
-        `,
+        backgroundImage: `url(${heroImg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "white",
-        textAlign: "center",
-        padding: "20px",
       }}
     >
       <div
         style={{
-          background: "rgba(0,0,0,0.6)",
+          background: "rgba(0,0,0,0.65)",
           padding: "40px",
-          borderRadius: "14px",
+          borderRadius: "16px",
+          textAlign: "center",
+          color: "#fff",
           maxWidth: "700px",
+          width: "90%",
         }}
       >
-        <h1 style={{ fontSize: "42px", marginBottom: "10px" }}>
+        <h1 style={{ fontSize: "36px", marginBottom: "10px" }}>
           WANDERFEST TOURLINE
         </h1>
 
@@ -44,7 +42,10 @@ function Home() {
             justifyContent: "center",
           }}
         >
-          <a href="tel:7904579099" style={btnBlue}>
+          <a
+            href="tel:8807509155"
+            style={btnBlue}
+          >
             Call Now
           </a>
 
@@ -61,7 +62,7 @@ function Home() {
             View Packages
           </Link>
 
-          <Link to="/customize" style={btnWhite}>
+          <Link to="/contact" style={btnWhite}>
             Customize Trip
           </Link>
         </div>
@@ -70,41 +71,36 @@ function Home() {
   );
 }
 
-/* BUTTON STYLES */
-const btnBlue = {
-  background: "#2563eb",
+const btnBase = {
   padding: "12px 22px",
   borderRadius: "10px",
-  color: "white",
-  textDecoration: "none",
   fontWeight: "600",
+  textDecoration: "none",
+  fontSize: "16px",
+};
+
+const btnBlue = {
+  ...btnBase,
+  background: "#2563eb",
+  color: "#fff",
 };
 
 const btnGreen = {
+  ...btnBase,
   background: "#22c55e",
-  padding: "12px 22px",
-  borderRadius: "10px",
-  color: "white",
-  textDecoration: "none",
-  fontWeight: "600",
+  color: "#fff",
 };
 
 const btnOrange = {
+  ...btnBase,
   background: "#f59e0b",
-  padding: "12px 22px",
-  borderRadius: "10px",
-  color: "white",
-  textDecoration: "none",
-  fontWeight: "600",
+  color: "#fff",
 };
 
 const btnWhite = {
-  background: "white",
-  padding: "12px 22px",
-  borderRadius: "10px",
-  color: "#111",
-  textDecoration: "none",
-  fontWeight: "700",
+  ...btnBase,
+  background: "#fff",
+  color: "#000",
 };
 
 export default Home;

@@ -3,41 +3,53 @@ import heroImg from "../assets/hero/hero.jpg";
 
 function Home() {
   return (
-    <div>
-      {/* HERO SECTION */}
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundImage: `url(${heroImg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        position: "relative",
+      }}
+    >
+      {/* Dark overlay */}
       <div
         style={{
-          minHeight: "90vh",
-          backgroundImage: `url(${heroImg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.55)",
+        }}
+      />
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          minHeight: "100vh",
           padding: "20px",
         }}
       >
-        {/* OVERLAY CARD */}
         <div
           style={{
-            background: "rgba(0,0,0,0.65)",
+            background: "rgba(0,0,0,0.7)",
             padding: "40px",
-            borderRadius: "16px",
+            borderRadius: "14px",
             textAlign: "center",
-            maxWidth: "700px",
-            width: "100%",
-            color: "white",
+            maxWidth: "650px",
           }}
         >
-          <h1 style={{ fontSize: "36px", marginBottom: "15px" }}>
+          <h1 style={{ color: "#fff", fontSize: "36px" }}>
             WANDERFEST TOURLINE
           </h1>
 
-          <p style={{ marginBottom: "30px", fontSize: "16px" }}>
+          <p style={{ color: "#ddd", margin: "15px 0 30px" }}>
             Explore Ooty, Coonoor, Mysore & more with comfort and trust
           </p>
 
-          {/* BUTTONS */}
           <div
             style={{
               display: "flex",
@@ -46,65 +58,22 @@ function Home() {
               justifyContent: "center",
             }}
           >
-            {/* CALL */}
-            <a
-              href="tel:7904579099"
-              style={{
-                background: "#2563eb",
-                color: "white",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                textDecoration: "none",
-                fontWeight: "600",
-              }}
-            >
-              Call Now
-            </a>
+            <a href="tel:8807509155" style={btnBlue}>Call Now</a>
 
-            {/* WHATSAPP */}
             <a
-              href="https://wa.me/917904579099"
+              href="https://wa.me/7904579099"
               target="_blank"
               rel="noreferrer"
-              style={{
-                background: "#22c55e",
-                color: "white",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                textDecoration: "none",
-                fontWeight: "600",
-              }}
+              style={btnGreen}
             >
               WhatsApp
             </a>
 
-            {/* VIEW PACKAGES */}
-            <Link
-              to="/tours"
-              style={{
-                background: "#f59e0b",
-                color: "white",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                textDecoration: "none",
-                fontWeight: "600",
-              }}
-            >
+            <Link to="/tours" style={btnOrange}>
               View Packages
             </Link>
 
-            {/* CUSTOMIZE TRIP */}
-            <Link
-              to="/customize"
-              style={{
-                background: "white",
-                color: "#111",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                textDecoration: "none",
-                fontWeight: "600",
-              }}
-            >
+            <Link to="/customize" style={btnWhite}>
               Customize Trip
             </Link>
           </div>
@@ -113,5 +82,41 @@ function Home() {
     </div>
   );
 }
+
+const btnBlue = {
+  background: "#2563eb",
+  color: "#fff",
+  padding: "12px 20px",
+  borderRadius: "8px",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnGreen = {
+  background: "#22c55e",
+  color: "#fff",
+  padding: "12px 20px",
+  borderRadius: "8px",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnOrange = {
+  background: "#f59e0b",
+  color: "#fff",
+  padding: "12px 20px",
+  borderRadius: "8px",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnWhite = {
+  background: "#fff",
+  color: "#000",
+  padding: "12px 20px",
+  borderRadius: "8px",
+  textDecoration: "none",
+  fontWeight: "600",
+};
 
 export default Home;

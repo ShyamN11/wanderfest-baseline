@@ -15,7 +15,7 @@ function CustomizeTrip() {
 
   const handleWhatsApp = () => {
     const message = `
-Hello Wanderfest Tourline 👋
+Hello Wanderfest Tourline!
 
 Name: ${form.name}
 Pickup Location: ${form.pickup}

@@ -1,6 +1,27 @@
+import { useState } from "react";
+import ImageModal from "../components/ImageModal";
+
+import sedanImg from "../assets/vehicles/sedan.jpg";
+import innovaImg from "../assets/vehicles/innova.jpg";
+import ertigaImg from "../assets/vehicles/ertiga.jpg";
+import hatchbackImg from "../assets/vehicles/hatchback.jpg";
+import coachvan1Img from "../assets/vehicles/coachvan1.jpg";
+import coachvan2Img from "../assets/vehicles/coachvan2.jpg";
+
 function Vehicles() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const vehicles = [
+    { name: "Sedan", image: sedanImg },
+    { name: "Innova", image: innovaImg },
+    { name: "Ertiga", image: ertigaImg },
+    { name: "Hatchback", image: hatchbackImg },
+    { name: "Coach Van", image: coachvan1Img },
+    { name: "Coach Van (Large)", image: coachvan2Img },
+  ];
+
   return (
-    <div style={{ padding: "60px 20px", maxWidth: "1200px", margin: "auto" }}>
+    <div style={{ padding: "50px", maxWidth: "1200px", margin: "auto" }}>
       <h1 style={{ textAlign: "center", marginBottom: "40px" }}>
         Our Vehicles
       </h1>
@@ -9,58 +30,45 @@ function Vehicles() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "30px",
+          gap: "25px",
         }}
       >
         {vehicles.map((v, i) => (
-          <div key={i} style={card}>
-            <img src={v.image} alt={v.name} style={img} />
+          <div key={i} style={cardStyle}>
+            <img
+              src={v.image}
+              alt={v.name}
+              style={imgStyle}
+              onClick={() => setSelectedImage(v.image)}
+            />
             <h3>{v.name}</h3>
-            <p>{v.desc}</p>
           </div>
         ))}
       </div>
+
+      <ImageModal
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
     </div>
   );
 }
 
-const vehicles = [
-  {
-    name: "Innova Crysta",
-    desc: "Comfortable family travel (6–7 seater)",
-    image: "/vehicle1.jpg",
-  },
-  {
-    name: "Tempo Traveller",
-    desc: "Group tours & corporate trips",
-    image: "/vehicle2.jpg",
-  },
-  {
-    name: "Mini Bus",
-    desc: "School & large group tours",
-    image: "/vehicle3.jpg",
-  },
-  {
-    name: "Sedan",
-    desc: "Budget friendly local & outstation trips",
-    image: "/vehicle4.jpg",
-  },
-];
-
-const card = {
+const cardStyle = {
   background: "#fff",
-  padding: "20px",
   borderRadius: "12px",
+  padding: "15px",
+  boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
   textAlign: "center",
-  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
 };
 
-const img = {
+const imgStyle = {
   width: "100%",
   height: "180px",
   objectFit: "cover",
   borderRadius: "10px",
-  marginBottom: "15px",
+  cursor: "pointer",
+  marginBottom: "10px",
 };
 
 export default Vehicles;

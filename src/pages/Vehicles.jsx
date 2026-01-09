@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImageModal from "../components/ImageModal";
 
+// vehicle images (MAKE SURE THESE FILES EXIST)
 import sedanImg from "../assets/vehicles/sedan.jpg";
 import innovaImg from "../assets/vehicles/innova.jpg";
 import ertigaImg from "../assets/vehicles/ertiga.jpg";
@@ -12,12 +13,36 @@ function Vehicles() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const vehicles = [
-    { name: "Sedan", image: sedanImg },
-    { name: "Innova", image: innovaImg },
-    { name: "Ertiga", image: ertigaImg },
-    { name: "Hatchback", image: hatchbackImg },
-    { name: "Coach Van", image: coachvan1Img },
-    { name: "Coach Van (Large)", image: coachvan2Img },
+    {
+      name: "Sedan",
+      desc: "Budget friendly local & outstation trips",
+      image: sedanImg,
+    },
+    {
+      name: "Innova Crysta",
+      desc: "Comfortable family travel (6–7 seater)",
+      image: innovaImg,
+    },
+    {
+      name: "Ertiga",
+      desc: "Smooth & spacious family trips",
+      image: ertigaImg,
+    },
+    {
+      name: "Hatchback",
+      desc: "City rides & short trips",
+      image: hatchbackImg,
+    },
+    {
+      name: "Coach Van",
+      desc: "Group tours & corporate trips",
+      image: coachvan1Img,
+    },
+    {
+      name: "Coach Van (Premium)",
+      desc: "Luxury group travel",
+      image: coachvan2Img,
+    },
   ];
 
   return (
@@ -29,8 +54,8 @@ function Vehicles() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "25px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: "30px",
         }}
       >
         {vehicles.map((v, i) => (
@@ -38,14 +63,17 @@ function Vehicles() {
             <img
               src={v.image}
               alt={v.name}
-              style={imgStyle}
               onClick={() => setSelectedImage(v.image)}
+              style={imageStyle}
             />
-            <h3>{v.name}</h3>
+
+            <h2>{v.name}</h2>
+            <p>{v.desc}</p>
           </div>
         ))}
       </div>
 
+      {/* IMAGE MODAL */}
       <ImageModal
         image={selectedImage}
         onClose={() => setSelectedImage(null)}
@@ -62,13 +90,13 @@ const cardStyle = {
   textAlign: "center",
 };
 
-const imgStyle = {
+const imageStyle = {
   width: "100%",
-  height: "180px",
+  height: "200px",
   objectFit: "cover",
   borderRadius: "10px",
   cursor: "pointer",
-  marginBottom: "10px",
+  marginBottom: "15px",
 };
 
 export default Vehicles;

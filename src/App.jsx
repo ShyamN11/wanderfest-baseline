@@ -6,6 +6,8 @@ import TourDetails from "./pages/TourDetails";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import CustomizeTrip from "./pages/CustomizeTrip";
+import Vehicles from "./pages/Vehicles";
+import Reviews from "./pages/Reviews";
 
 
 function App() {
@@ -20,6 +22,10 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/customize" element={<CustomizeTrip />} />
+        <Route path="/vehicles" element={<Vehicles />} />
+        <Route path="/reviews" element={<Reviews />} />
+
+
 
       </Routes>
     </>

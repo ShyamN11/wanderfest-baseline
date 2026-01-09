@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 
+const ADMIN_PIN = "6809"; // 🔐 CHANGE THIS PIN
+
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [rating, setRating] = useState("");
   const [image, setImage] = useState(null);
 
   /* LOAD SAVED REVIEWS */
   useEffect(() => {
     const saved = localStorage.getItem("wanderfest_reviews");
-    if (saved) {
-      setReviews(JSON.parse(saved));
-    }
+    if (saved) setReviews(JSON.parse(saved));
   }, []);
 
   /* SAVE REVIEWS */
@@ -22,8 +23,8 @@ function Reviews() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !message) {
-      alert("Please enter name and review");
+    if (!name || !message || !rating) {
+      alert("Please fill name, review and rating");
       return;
     }
 
@@ -31,6 +32,7 @@ function Reviews() {
       id: Date.now(),
       name,
       message,
+      rating,
       image: image ? URL.createObjectURL(image) : null,
       date: new Date().toLocaleDateString(),
     };
@@ -38,18 +40,17 @@ function Reviews() {
     setReviews([newReview, ...reviews]);
     setName("");
     setMessage("");
+    setRating("");
     setImage(null);
   };
 
-  /* DELETE REVIEW */
   const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this review?"
-    );
-    if (!confirmDelete) return;
-
-    const updatedReviews = reviews.filter((r) => r.id !== id);
-    setReviews(updatedReviews);
+    const pin = prompt("Enter Admin PIN to delete this review:");
+    if (pin !== ADMIN_PIN) {
+      alert("Wrong PIN ❌");
+      return;
+    }
+    setReviews(reviews.filter((r) => r.id !== id));
   };
 
   return (
@@ -58,11 +59,11 @@ function Reviews() {
         Happy Customers
       </h1>
 
-      {/* REVIEWS LIST */}
+      {/* REVIEWS */}
       <div style={reviewGrid}>
         {reviews.length === 0 && (
           <p style={{ textAlign: "center", color: "#666" }}>
-            No reviews yet. Be the first 😊
+            Be the first to share your experience 😊
           </p>
         )}
 
@@ -73,13 +74,13 @@ function Reviews() {
             )}
 
             <h3>{r.name}</h3>
+            <p style={{ fontSize: "18px" }}>{r.rating}</p>
             <small>{r.date}</small>
             <p>{r.message}</p>
 
-            {/* DELETE BUTTON */}
             <button
-              onClick={() => handleDelete(r.id)}
               style={deleteBtn}
+              onClick={() => handleDelete(r.id)}
             >
               Delete ❌
             </button>
@@ -105,6 +106,19 @@ function Reviews() {
           onChange={(e) => setMessage(e.target.value)}
           style={textareaStyle}
         />
+
+        <select
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+          style={inputStyle}
+        >
+          <option value="">Select Rating</option>
+          <option value="⭐">⭐</option>
+          <option value="⭐⭐">⭐⭐</option>
+          <option value="⭐⭐⭐">⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+        </select>
 
         <input
           type="file"
@@ -140,7 +154,6 @@ const reviewCard = {
   borderRadius: "12px",
   boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
   textAlign: "center",
-  position: "relative",
 };
 
 const reviewImage = {
@@ -152,14 +165,13 @@ const reviewImage = {
 };
 
 const deleteBtn = {
-  marginTop: "10px",
   background: "#dc2626",
   color: "#fff",
   border: "none",
   padding: "8px 12px",
   borderRadius: "6px",
   cursor: "pointer",
-  fontSize: "14px",
+  marginTop: "10px",
 };
 
 const formStyle = {

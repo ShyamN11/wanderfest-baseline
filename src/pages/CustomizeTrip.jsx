@@ -1,121 +1,102 @@
 import { useState } from "react";
 
 function CustomizeTrip() {
-  const [form, setForm] = useState({
-    name: "",
-    pickup: "",
-    drop: "",
-    days: "",
-    places: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [pickup, setPickup] = useState("");
+  const [drop, setDrop] = useState("");
+  const [state, setState] = useState("");
+  const [type, setType] = useState("");
+  const [notes, setNotes] = useState("");
 
   const handleWhatsApp = () => {
     const message = `
-Hello Wanderfest Tourline!
+Wanderfest Tourline - Custom Trip Request
 
-Name: ${form.name}
-Pickup Location: ${form.pickup}
-Drop Location: ${form.drop}
-Number of Days: ${form.days}
-Places to Visit: ${form.places}
+Pickup Location: ${pickup}
+Drop Location: ${drop}
+State: ${state}
+Trip Type: ${type}
+Additional Notes: ${notes}
+`;
 
-I want to customize my trip.
-    `;
-
-    const url = `https://wa.me/917904579099?text=${encodeURIComponent(
-      message
-    )}`;
-
+    const phone = "7904579099";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 
   return (
-    <div style={{ padding: "60px 20px", maxWidth: "700px", margin: "auto" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "10px" }}>
-        Customize Your Trip
-      </h1>
+    <div style={container}>
+      <h1>Customize Your Trip</h1>
+      <p>Create your own travel plan with us</p>
 
-      <p style={{ textAlign: "center", marginBottom: "40px" }}>
-        Tell us your travel plan and we’ll arrange everything for you
-      </p>
+      <input
+        style={input}
+        placeholder="Pickup Location"
+        value={pickup}
+        onChange={(e) => setPickup(e.target.value)}
+      />
 
-      {/* FORM */}
-      <div style={{ display: "grid", gap: "20px" }}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+      <input
+        style={input}
+        placeholder="Drop Location"
+        value={drop}
+        onChange={(e) => setDrop(e.target.value)}
+      />
 
-        <input
-          type="text"
-          name="pickup"
-          placeholder="Pickup Location"
-          value={form.pickup}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+      <select style={input} value={state} onChange={(e) => setState(e.target.value)}>
+        <option value="">Select State</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Karnataka">Karnataka</option>
+      </select>
 
-        <input
-          type="text"
-          name="drop"
-          placeholder="Drop Location"
-          value={form.drop}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+      <select style={input} value={type} onChange={(e) => setType(e.target.value)}>
+        <option value="">Trip Type</option>
+        <option value="Local">Local</option>
+        <option value="Outstation">Outstation</option>
+        <option value="Multi-State">Multi-State</option>
+      </select>
 
-        <input
-          type="text"
-          name="days"
-          placeholder="Number of Days (eg: 3 Days / 2 Nights)"
-          value={form.days}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+      <textarea
+        style={{ ...input, height: "100px" }}
+        placeholder="Additional requirements (hotel, sightseeing, etc.)"
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+      />
 
-        <textarea
-          name="places"
-          placeholder="Places you want to visit (Ooty, Wayanad, Mysore, etc.)"
-          value={form.places}
-          onChange={handleChange}
-          rows="4"
-          style={{ ...inputStyle, resize: "none" }}
-        />
-
-        {/* WHATSAPP BUTTON */}
-        <button
-          onClick={handleWhatsApp}
-          style={{
-            background: "#22c55e",
-            color: "white",
-            padding: "14px",
-            borderRadius: "10px",
-            border: "none",
-            fontSize: "16px",
-            fontWeight: "600",
-            cursor: "pointer",
-          }}
-        >
-          Send on WhatsApp
-        </button>
-      </div>
+      <button style={button} onClick={handleWhatsApp}>
+        Send on WhatsApp
+      </button>
     </div>
   );
 }
 
-const inputStyle = {
-  padding: "14px",
+const container = {
+  maxWidth: "500px",
+  margin: "80px auto",
+  padding: "30px",
+  background: "#fff",
+  borderRadius: "12px",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+};
+
+const input = {
+  width: "100%",
+  padding: "12px",
+  marginBottom: "15px",
   borderRadius: "8px",
   border: "1px solid #ccc",
-  fontSize: "15px",
+};
+
+const button = {
+  width: "100%",
+  padding: "14px",
+  backgroundColor: "#22c55e",
+  color: "#fff",
+  border: "none",
+  borderRadius: "8px",
+  fontSize: "16px",
+  fontWeight: "bold",
+  cursor: "pointer",
 };
 
 export default CustomizeTrip;

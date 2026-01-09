@@ -7,7 +7,7 @@ function TourDetails() {
 
   if (!tour) {
     return (
-      <div style={{ padding: "40px", textAlign: "center" }}>
+      <div style={{ padding: "60px", textAlign: "center" }}>
         <h2>Tour not found</h2>
         <Link to="/tours">← Back to Packages</Link>
       </div>
@@ -15,56 +15,57 @@ function TourDetails() {
   }
 
   return (
-    <div style={{ maxWidth: "900px", margin: "40px auto", padding: "20px" }}>
-      {/* IMAGE */}
+    <div style={{ maxWidth: "1000px", margin: "auto", padding: "40px" }}>
+      {/* Title */}
+      <h1 style={{ fontSize: "36px", marginBottom: "10px" }}>
+        {tour.title}
+      </h1>
+
+      {/* Price */}
+      <p style={{ fontSize: "22px", fontWeight: "bold", marginBottom: "30px" }}>
+        {tour.price}
+      </p>
+
+      {/* Image */}
       <img
         src={tour.image}
         alt={tour.title}
         style={{
           width: "100%",
-          maxHeight: "400px",
+          height: "350px",
           objectFit: "cover",
           borderRadius: "12px",
-          marginBottom: "25px",
+          marginBottom: "30px",
         }}
       />
 
-      {/* TITLE */}
-      <h1 style={{ marginBottom: "10px" }}>{tour.title}</h1>
-
-      {/* PRICE */}
-      <h2 style={{ color: "#16a34a", marginBottom: "30px" }}>
-        {tour.price}
-      </h2>
-
-      {/* TIMELINE */}
-      <div style={{ borderLeft: "4px solid #2563eb", paddingLeft: "25px" }}>
+      {/* Itinerary */}
+      <h2 style={{ marginBottom: "15px" }}>Day-wise Itinerary</h2>
+      <ul style={{ lineHeight: "1.8", marginBottom: "30px" }}>
         {tour.itinerary.map((day, index) => (
-          <div key={index} style={{ marginBottom: "25px" }}>
-            <h3 style={{ color: "#2563eb" }}>
-              Day {index + 1}
-            </h3>
-            <p style={{ marginTop: "5px" }}>{day}</p>
-          </div>
+          <li key={index}>{day}</li>
         ))}
-      </div>
+      </ul>
 
-      {/* BUTTONS */}
-      <div style={{ marginTop: "40px", display: "flex", gap: "15px", flexWrap: "wrap" }}>
+      {/* Action Buttons */}
+      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
         <a
-          href="https://wa.me/917904579099"
+          href="tel:7904579099"
+          style={callBtn}
+        >
+          📞 Call Now
+        </a>
+
+        <a
+          href={`https://wa.me/917904579099?text=Hi, I want to book ${tour.title}`}
           target="_blank"
           rel="noreferrer"
-          style={btnGreen}
+          style={whatsBtn}
         >
-          Book on WhatsApp
+          💬 WhatsApp
         </a>
 
-        <a href="tel:7904579099" style={btnBlue}>
-          Call Now
-        </a>
-
-        <Link to="/tours" style={btnGray}>
+        <Link to="/tours" style={backBtn}>
           ← Back to Packages
         </Link>
       </div>
@@ -72,32 +73,30 @@ function TourDetails() {
   );
 }
 
-/* BUTTON STYLES */
-const btnGreen = {
-  background: "#22c55e",
-  color: "white",
-  padding: "12px 20px",
-  borderRadius: "8px",
-  textDecoration: "none",
-  fontWeight: "600",
-};
-
-const btnBlue = {
+const callBtn = {
   background: "#2563eb",
-  color: "white",
-  padding: "12px 20px",
+  color: "#fff",
+  padding: "12px 22px",
   borderRadius: "8px",
   textDecoration: "none",
   fontWeight: "600",
 };
 
-const btnGray = {
-  background: "#e5e7eb",
-  color: "#111827",
-  padding: "12px 20px",
+const whatsBtn = {
+  background: "#22c55e",
+  color: "#fff",
+  padding: "12px 22px",
   borderRadius: "8px",
   textDecoration: "none",
   fontWeight: "600",
+};
+
+const backBtn = {
+  padding: "12px 22px",
+  borderRadius: "8px",
+  textDecoration: "none",
+  border: "1px solid #ccc",
+  color: "#333",
 };
 
 export default TourDetails;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import ImageModal from "../components/ImageModal";
 
-const ADMIN_PIN = "6809"; // 🔐 CHANGE THIS PIN
+const ADMIN_PIN = "6809"; // 🔐 change this
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -9,68 +10,83 @@ function Reviews() {
   const [rating, setRating] = useState("");
   const [image, setImage] = useState(null);
 
-  /* LOAD SAVED REVIEWS */
+  const [adminMode, setAdminMode] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  /* LOAD */
   useEffect(() => {
     const saved = localStorage.getItem("wanderfest_reviews");
     if (saved) setReviews(JSON.parse(saved));
   }, []);
 
-  /* SAVE REVIEWS */
+  /* SAVE */
   useEffect(() => {
     localStorage.setItem("wanderfest_reviews", JSON.stringify(reviews));
   }, [reviews]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!name || !message || !rating) {
-      alert("Please fill name, review and rating");
+      alert("Fill all fields");
       return;
     }
 
-    const newReview = {
-      id: Date.now(),
-      name,
-      message,
-      rating,
-      image: image ? URL.createObjectURL(image) : null,
-      date: new Date().toLocaleDateString(),
-    };
+    setReviews([
+      {
+        id: Date.now(),
+        name,
+        message,
+        rating,
+        image: image ? URL.createObjectURL(image) : null,
+        date: new Date().toLocaleDateString(),
+      },
+      ...reviews,
+    ]);
 
-    setReviews([newReview, ...reviews]);
     setName("");
     setMessage("");
     setRating("");
     setImage(null);
   };
 
-  const handleDelete = (id) => {
-    const pin = prompt("Enter Admin PIN to delete this review:");
-    if (pin !== ADMIN_PIN) {
-      alert("Wrong PIN ❌");
-      return;
+  const enableAdmin = () => {
+    const pin = prompt("Enter Admin PIN:");
+    if (pin === ADMIN_PIN) {
+      setAdminMode(true);
+      alert("Admin mode enabled");
+    } else {
+      alert("Wrong PIN");
     }
+  };
+
+  const handleDelete = (id) => {
     setReviews(reviews.filter((r) => r.id !== id));
   };
 
   return (
-    <div style={pageStyle}>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Happy Customers
-      </h1>
+    <div style={page}>
+      <h1 style={{ textAlign: "center" }}>Happy Customers</h1>
+
+      {/* ADMIN BUTTON */}
+      {!adminMode && (
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+          <button onClick={enableAdmin} style={adminBtn}>
+            Admin Login
+          </button>
+        </div>
+      )}
 
       {/* REVIEWS */}
-      <div style={reviewGrid}>
-        {reviews.length === 0 && (
-          <p style={{ textAlign: "center", color: "#666" }}>
-            Be the first to share your experience 😊
-          </p>
-        )}
-
+      <div style={grid}>
         {reviews.map((r) => (
-          <div key={r.id} style={reviewCard}>
+          <div key={r.id} style={card}>
             {r.image && (
-              <img src={r.image} alt="Customer" style={reviewImage} />
+              <img
+                src={r.image}
+                alt="Customer"
+                style={img}
+                onClick={() => setSelectedImage(r.image)}
+              />
             )}
 
             <h3>{r.name}</h3>
@@ -78,131 +94,93 @@ function Reviews() {
             <small>{r.date}</small>
             <p>{r.message}</p>
 
-            <button
-              style={deleteBtn}
-              onClick={() => handleDelete(r.id)}
-            >
-              Delete ❌
-            </button>
+            {adminMode && (
+              <button style={delBtn} onClick={() => handleDelete(r.id)}>
+                Delete ❌
+              </button>
+            )}
           </div>
         ))}
       </div>
 
-      {/* REVIEW FORM */}
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <h2>Share Your Review</h2>
+      {/* FORM */}
+      <form onSubmit={handleSubmit} style={form}>
+        <h2>Add Review</h2>
 
         <input
-          type="text"
           placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          style={inputStyle}
         />
 
         <textarea
-          placeholder="Write your review..."
+          placeholder="Write review"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          style={textareaStyle}
         />
 
-        <select
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          style={inputStyle}
-        >
-          <option value="">Select Rating</option>
-          <option value="⭐">⭐</option>
-          <option value="⭐⭐">⭐⭐</option>
-          <option value="⭐⭐⭐">⭐⭐⭐</option>
-          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+        <select value={rating} onChange={(e) => setRating(e.target.value)}>
+          <option value="">Rating</option>
+          <option>⭐</option>
+          <option>⭐⭐</option>
+          <option>⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐⭐</option>
         </select>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
 
-        <button type="submit" style={buttonStyle}>
-          Submit Review
-        </button>
+        <button>Add Review</button>
       </form>
+
+      {/* IMAGE MODAL */}
+      <ImageModal
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
     </div>
   );
 }
 
 /* STYLES */
-const pageStyle = {
-  maxWidth: "1100px",
-  margin: "auto",
-  padding: "50px 20px",
-};
-
-const reviewGrid = {
+const page = { maxWidth: "1100px", margin: "auto", padding: "40px" };
+const grid = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
   gap: "20px",
-  marginBottom: "50px",
 };
-
-const reviewCard = {
+const card = {
   background: "#fff",
   padding: "20px",
   borderRadius: "12px",
-  boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
   textAlign: "center",
+  boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
 };
-
-const reviewImage = {
+const img = {
   width: "100%",
   height: "200px",
   objectFit: "contain",
   borderRadius: "10px",
-  marginBottom: "10px",
+  cursor: "pointer",
 };
-
-const deleteBtn = {
+const delBtn = {
   background: "#dc2626",
   color: "#fff",
   border: "none",
-  padding: "8px 12px",
-  borderRadius: "6px",
-  cursor: "pointer",
+  padding: "8px",
   marginTop: "10px",
 };
-
-const formStyle = {
-  background: "#fff",
-  padding: "25px",
-  borderRadius: "12px",
-  boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+const adminBtn = {
+  background: "#000",
+  color: "#fff",
+  padding: "8px 14px",
+  borderRadius: "6px",
+};
+const form = {
+  marginTop: "40px",
   display: "flex",
   flexDirection: "column",
-  gap: "15px",
-};
-
-const inputStyle = {
-  padding: "12px",
-  fontSize: "16px",
-};
-
-const textareaStyle = {
-  padding: "12px",
-  fontSize: "16px",
-  minHeight: "100px",
-};
-
-const buttonStyle = {
-  background: "#16a34a",
-  color: "#fff",
-  padding: "12px",
-  border: "none",
-  borderRadius: "8px",
-  fontWeight: "bold",
-  cursor: "pointer",
+  gap: "10px",
 };
 
 export default Reviews;

@@ -1,106 +1,117 @@
 import { Link } from "react-router-dom";
 import heroImg from "../assets/hero/hero.jpg";
 
-
 function Home() {
   return (
-    <div
-      style={{
-        minHeight: "90vh",
-        backgroundImage: `url(${heroImg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div>
+      {/* HERO SECTION */}
       <div
         style={{
-          background: "rgba(0,0,0,0.65)",
-          padding: "40px",
-          borderRadius: "16px",
-          textAlign: "center",
-          color: "#fff",
-          maxWidth: "700px",
-          width: "90%",
+          minHeight: "90vh",
+          backgroundImage: `url(${heroImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "20px",
         }}
       >
-        <h1 style={{ fontSize: "36px", marginBottom: "10px" }}>
-          WANDERFEST TOURLINE
-        </h1>
-
-        <p style={{ fontSize: "18px", marginBottom: "30px" }}>
-          Explore Ooty, Coonoor, Mysore & more with comfort and trust
-        </p>
-
+        {/* OVERLAY CARD */}
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "15px",
-            justifyContent: "center",
+            background: "rgba(0,0,0,0.65)",
+            padding: "40px",
+            borderRadius: "16px",
+            textAlign: "center",
+            maxWidth: "700px",
+            width: "100%",
+            color: "white",
           }}
         >
-          <a
-            href="tel:8807509155"
-            style={btnBlue}
+          <h1 style={{ fontSize: "36px", marginBottom: "15px" }}>
+            WANDERFEST TOURLINE
+          </h1>
+
+          <p style={{ marginBottom: "30px", fontSize: "16px" }}>
+            Explore Ooty, Coonoor, Mysore & more with comfort and trust
+          </p>
+
+          {/* BUTTONS */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "15px",
+              justifyContent: "center",
+            }}
           >
-            Call Now
-          </a>
+            {/* CALL */}
+            <a
+              href="tel:7904579099"
+              style={{
+                background: "#2563eb",
+                color: "white",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                fontWeight: "600",
+              }}
+            >
+              Call Now
+            </a>
 
-          <a
-            href="https://wa.me/917904579099"
-            target="_blank"
-            rel="noreferrer"
-            style={btnGreen}
-          >
-            WhatsApp
-          </a>
+            {/* WHATSAPP */}
+            <a
+              href="https://wa.me/917904579099"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                background: "#22c55e",
+                color: "white",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                fontWeight: "600",
+              }}
+            >
+              WhatsApp
+            </a>
 
-          <Link to="/tours" style={btnOrange}>
-            View Packages
-          </Link>
+            {/* VIEW PACKAGES */}
+            <Link
+              to="/tours"
+              style={{
+                background: "#f59e0b",
+                color: "white",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                fontWeight: "600",
+              }}
+            >
+              View Packages
+            </Link>
 
-          <Link to="/contact" style={btnWhite}>
-            Customize Trip
-          </Link>
+            {/* CUSTOMIZE TRIP */}
+            <Link
+              to="/customize"
+              style={{
+                background: "white",
+                color: "#111",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                fontWeight: "600",
+              }}
+            >
+              Customize Trip
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-const btnBase = {
-  padding: "12px 22px",
-  borderRadius: "10px",
-  fontWeight: "600",
-  textDecoration: "none",
-  fontSize: "16px",
-};
-
-const btnBlue = {
-  ...btnBase,
-  background: "#2563eb",
-  color: "#fff",
-};
-
-const btnGreen = {
-  ...btnBase,
-  background: "#22c55e",
-  color: "#fff",
-};
-
-const btnOrange = {
-  ...btnBase,
-  background: "#f59e0b",
-  color: "#fff",
-};
-
-const btnWhite = {
-  ...btnBase,
-  background: "#fff",
-  color: "#000",
-};
 
 export default Home;

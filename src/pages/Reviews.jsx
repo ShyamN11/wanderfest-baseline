@@ -28,6 +28,7 @@ function Reviews() {
     }
 
     const newReview = {
+      id: Date.now(),
       name,
       message,
       image: image ? URL.createObjectURL(image) : null,
@@ -40,6 +41,17 @@ function Reviews() {
     setImage(null);
   };
 
+  /* DELETE REVIEW */
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this review?"
+    );
+    if (!confirmDelete) return;
+
+    const updatedReviews = reviews.filter((r) => r.id !== id);
+    setReviews(updatedReviews);
+  };
+
   return (
     <div style={pageStyle}>
       <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
@@ -50,18 +62,27 @@ function Reviews() {
       <div style={reviewGrid}>
         {reviews.length === 0 && (
           <p style={{ textAlign: "center", color: "#666" }}>
-            Be the first to share your experience 😊
+            No reviews yet. Be the first 😊
           </p>
         )}
 
-        {reviews.map((r, i) => (
-          <div key={i} style={reviewCard}>
+        {reviews.map((r) => (
+          <div key={r.id} style={reviewCard}>
             {r.image && (
               <img src={r.image} alt="Customer" style={reviewImage} />
             )}
+
             <h3>{r.name}</h3>
             <small>{r.date}</small>
             <p>{r.message}</p>
+
+            {/* DELETE BUTTON */}
+            <button
+              onClick={() => handleDelete(r.id)}
+              style={deleteBtn}
+            >
+              Delete ❌
+            </button>
           </div>
         ))}
       </div>
@@ -119,6 +140,7 @@ const reviewCard = {
   borderRadius: "12px",
   boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
   textAlign: "center",
+  position: "relative",
 };
 
 const reviewImage = {
@@ -127,6 +149,17 @@ const reviewImage = {
   objectFit: "contain",
   borderRadius: "10px",
   marginBottom: "10px",
+};
+
+const deleteBtn = {
+  marginTop: "10px",
+  background: "#dc2626",
+  color: "#fff",
+  border: "none",
+  padding: "8px 12px",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontSize: "14px",
 };
 
 const formStyle = {

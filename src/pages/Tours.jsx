@@ -3,7 +3,7 @@ import tours from "../data/tours";
 
 function Tours() {
   return (
-    <div style={{ padding: "50px", maxWidth: "1200px", margin: "auto" }}>
+    <div style={{ padding: "60px 20px", maxWidth: "1200px", margin: "auto" }}>
       <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
         Our Tour Packages
       </h1>
@@ -12,7 +12,7 @@ function Tours() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "30px",
+          gap: "35px",
         }}
       >
         {tours.map((tour) => (
@@ -20,21 +20,18 @@ function Tours() {
             <img
               src={tour.image}
               alt={tour.title}
-              style={{
-                width: "100%",
-                height: "180px",
-                objectFit: "cover",
-                borderRadius: "10px",
-                marginBottom: "15px",
-              }}
+              style={imageStyle}
             />
 
-            <h2>{tour.title}</h2>
-            <p style={priceStyle}>{tour.price}</p>
+            <div style={{ padding: "20px" }}>
+              <h2 style={{ marginBottom: "10px" }}>{tour.title}</h2>
 
-            <Link to={`/tour/${tour.slug}`} style={buttonStyle}>
-              View Itinerary
-            </Link>
+              <p style={priceStyle}>{tour.price}</p>
+
+              <Link to={`/tour/${tour.slug}`} style={buttonStyle}>
+                View Itinerary
+              </Link>
+            </div>
           </div>
         ))}
       </div>
@@ -42,24 +39,33 @@ function Tours() {
   );
 }
 
+/* ---------- STYLES ---------- */
+
 const cardStyle = {
-  borderRadius: "12px",
-  padding: "20px",
   background: "#fff",
-  boxShadow: "0 10px 20px rgba(0,0,0,0.08)",
+  borderRadius: "14px",
+  overflow: "hidden",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+  transition: "transform 0.3s ease",
+};
+
+const imageStyle = {
+  width: "100%",
+  height: "200px",
+  objectFit: "cover",
 };
 
 const priceStyle = {
   fontSize: "18px",
   fontWeight: "bold",
-  margin: "10px 0",
+  marginBottom: "15px",
 };
 
 const buttonStyle = {
   display: "inline-block",
   backgroundColor: "#f59e0b",
-  color: "white",
-  padding: "10px 18px",
+  color: "#fff",
+  padding: "12px 20px",
   borderRadius: "8px",
   textDecoration: "none",
   fontWeight: "600",

@@ -5,6 +5,8 @@ import Tours from "./pages/Tours";
 import TourDetails from "./pages/TourDetails";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import CustomizeTrip from "./pages/CustomizeTrip";
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/tour/:slug" element={<TourDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/customize" element={<CustomizeTrip />} />
+
       </Routes>
     </>
   );

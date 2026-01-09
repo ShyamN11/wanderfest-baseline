@@ -1,45 +1,72 @@
 import { Link } from "react-router-dom";
 
-export default function Home() {
+function Home() {
   return (
     <div
-      className="fade-in"
       style={{
         minHeight: "90vh",
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee)",
+          "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/hero.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        textAlign: "center",
         color: "white",
+        textAlign: "center",
         padding: "20px",
       }}
     >
       <div
         style={{
-          backgroundColor: "rgba(0,0,0,0.55)",
+          background: "rgba(0,0,0,0.6)",
           padding: "40px",
-          borderRadius: "10px",
+          borderRadius: "14px",
           maxWidth: "700px",
         }}
       >
-        <h1>WANDERFEST TOURLINE</h1>
-        <p>Explore Ooty, Coonoor, Mysore & more</p>
+        <h1 style={{ fontSize: "42px", marginBottom: "10px" }}>
+          WANDERFEST TOURLINE
+        </h1>
 
-        <div style={{ marginTop: "20px" }}>
-          <a href="tel:7904579099" style={btn("#0d6efd")}>Call Now</a>{" "}
+        <p style={{ fontSize: "18px", marginBottom: "30px" }}>
+          Explore Ooty, Coonoor, Mysore & more with comfort and trust
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "15px",
+            justifyContent: "center",
+          }}
+        >
+          {/* CALL */}
+          <a
+            href="tel:7904579099"
+            style={btnBlue}
+          >
+            Call Now
+          </a>
+
+          {/* WHATSAPP */}
           <a
             href="https://wa.me/917904579099"
             target="_blank"
-            style={btn("#25D366")}
+            rel="noreferrer"
+            style={btnGreen}
           >
             WhatsApp
-          </a>{" "}
-          <Link to="/tours" style={btn("#ff9800")}>
+          </a>
+
+          {/* VIEW PACKAGES */}
+          <Link to="/tours" style={btnOrange}>
             View Packages
+          </Link>
+
+          {/* ✅ CUSTOMIZE TRIP */}
+          <Link to="/customize" style={btnWhite}>
+            Customize Trip
           </Link>
         </div>
       </div>
@@ -47,14 +74,41 @@ export default function Home() {
   );
 }
 
-function btn(color) {
-  return {
-    backgroundColor: color,
-    color: "white",
-    padding: "12px 20px",
-    borderRadius: "6px",
-    textDecoration: "none",
-    margin: "5px",
-    display: "inline-block",
-  };
-}
+/* BUTTON STYLES */
+const btnBlue = {
+  background: "#2563eb",
+  padding: "12px 22px",
+  borderRadius: "10px",
+  color: "white",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnGreen = {
+  background: "#22c55e",
+  padding: "12px 22px",
+  borderRadius: "10px",
+  color: "white",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnOrange = {
+  background: "#f59e0b",
+  padding: "12px 22px",
+  borderRadius: "10px",
+  color: "white",
+  textDecoration: "none",
+  fontWeight: "600",
+};
+
+const btnWhite = {
+  background: "white",
+  padding: "12px 22px",
+  borderRadius: "10px",
+  color: "#111",
+  textDecoration: "none",
+  fontWeight: "700",
+};
+
+export default Home;

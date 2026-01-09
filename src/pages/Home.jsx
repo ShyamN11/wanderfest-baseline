@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import heroImg from "../assets/hero/hero.jpg";
 
 function Home() {
   return (
     <div
       style={{
         minHeight: "90vh",
-        backgroundImage:
-          "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/hero.jpg')",
+        backgroundImage: `
+          linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+          url(${heroImg})
+        `,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
@@ -41,15 +44,10 @@ function Home() {
             justifyContent: "center",
           }}
         >
-          {/* CALL */}
-          <a
-            href="tel:7904579099"
-            style={btnBlue}
-          >
+          <a href="tel:7904579099" style={btnBlue}>
             Call Now
           </a>
 
-          {/* WHATSAPP */}
           <a
             href="https://wa.me/917904579099"
             target="_blank"
@@ -59,12 +57,10 @@ function Home() {
             WhatsApp
           </a>
 
-          {/* VIEW PACKAGES */}
           <Link to="/tours" style={btnOrange}>
             View Packages
           </Link>
 
-          {/* ✅ CUSTOMIZE TRIP */}
           <Link to="/customize" style={btnWhite}>
             Customize Trip
           </Link>

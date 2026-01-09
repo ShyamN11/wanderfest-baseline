@@ -2,45 +2,55 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav style={navStyle}>
-      <div style={logoStyle}>WANDERFEST TOURLINE</div>
+    <nav style={nav}>
+      {/* BRAND */}
+      <div style={brand}>WANDERFEST TOURLINE</div>
 
-      <div style={linkContainer}>
-        <Link to="/" style={linkStyle}>Home</Link>
-        <Link to="/tours" style={linkStyle}>Tours</Link>
-        <Link to="/vehicles" style={linkStyle}>Vehicles</Link>
-        <Link to="/reviews" style={linkStyle}>Reviews</Link>
-        <Link to="/gallery" style={linkStyle}>Gallery</Link>
-        <Link to="/contact" style={linkStyle}>Contact</Link>
+      {/* MENU */}
+      <div style={menu}>
+        <Link to="/" style={link}>Home</Link>
+        <Link to="/tours" style={link}>Tours</Link>
+        <Link to="/vehicles" style={link}>Vehicles</Link>
+        <Link to="/reviews" style={link}>Reviews</Link>
+        <Link to="/gallery" style={link}>Gallery</Link>
+        <Link to="/contact" style={link}>Contact</Link>
       </div>
     </nav>
   );
 }
 
-/* STYLES */
-const navStyle = {
+/* ---------- STYLES ---------- */
+
+const nav = {
   display: "flex",
-  justifyContent: "space-between",
+  flexDirection: "column",        // 👈 KEY for mobile
   alignItems: "center",
-  padding: "15px 40px",
-  backgroundColor: "#1673ff",
-  color: "#fff",
+  gap: "12px",
+  padding: "14px",
+  backgroundColor: "#0f766e",     // green-blue tone
 };
 
-const logoStyle = {
-  fontSize: "22px",
+const brand = {
+  fontSize: "20px",
   fontWeight: "bold",
+  color: "#fff",
+  textAlign: "center",
 };
 
-const linkContainer = {
+const menu = {
   display: "flex",
-  gap: "20px",
+  flexWrap: "wrap",               // 👈 no hidden items
+  justifyContent: "center",
+  gap: "12px",
 };
 
-const linkStyle = {
+const link = {
   color: "#fff",
   textDecoration: "none",
-  fontSize: "16px",
+  fontSize: "15px",
+  padding: "6px 10px",
+  borderRadius: "6px",
+  background: "rgba(255,255,255,0.15)",
 };
 
 export default Navbar;

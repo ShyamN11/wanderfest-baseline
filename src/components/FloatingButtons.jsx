@@ -1,47 +1,56 @@
-export default function FloatingButtons() {
+function FloatingButtons() {
   return (
     <>
-      {/* WhatsApp Button */}
+      {/* WHATSAPP */}
       <a
         href="https://wa.me/917904579099"
         target="_blank"
         rel="noreferrer"
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "#25D366",
-          color: "white",
-          padding: "14px 18px",
-          borderRadius: "50px",
-          textDecoration: "none",
-          fontWeight: "bold",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-          zIndex: 1000,
-        }}
+        style={whatsapp}
       >
-        WhatsApp
+        💬
       </a>
 
-      {/* Call Button */}
-      <a
-        href="tel:7904579099"
-        style={{
-          position: "fixed",
-          bottom: "80px",
-          right: "20px",
-          backgroundColor: "#0d6efd",
-          color: "white",
-          padding: "14px 18px",
-          borderRadius: "50px",
-          textDecoration: "none",
-          fontWeight: "bold",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-          zIndex: 1000,
-        }}
-      >
-        Call
+      {/* CALL */}
+      <a href="tel:8807509155" style={call}>
+        📞
       </a>
     </>
   );
 }
+
+const whatsapp = {
+  position: "fixed",
+  bottom: "20px",
+  right: "20px",
+  width: "58px",
+  height: "58px",
+  borderRadius: "50%",
+  background: "#16a34a",
+  color: "#fff",
+  fontSize: "26px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textDecoration: "none",
+  zIndex: 1000,
+};
+
+const call = {
+  position: "fixed",
+  bottom: "90px",
+  right: "20px",
+  width: "58px",
+  height: "58px",
+  borderRadius: "50%",
+  background: "#2563eb",
+  color: "#fff",
+  fontSize: "26px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textDecoration: "none",
+  zIndex: 1000,
+};
+
+export default FloatingButtons;

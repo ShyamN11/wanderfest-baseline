@@ -92,11 +92,12 @@ const cardStyle = {
 
 const imageStyle = {
   width: "100%",
-  height: "200px",
-  objectFit: "cover",
+  height: "180px",
+  objectFit: "contain",   // 👈 no crop on mobile
   borderRadius: "10px",
   cursor: "pointer",
-  marginBottom: "15px",
+  marginBottom: "10px",
 };
+
 
 export default Vehicles;

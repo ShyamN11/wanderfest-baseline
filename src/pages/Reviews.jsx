@@ -182,5 +182,32 @@ const form = {
   flexDirection: "column",
   gap: "10px",
 };
+const page = {
+  maxWidth: "1100px",
+  margin: "auto",
+  padding: "20px",          // 👈 smaller padding for mobile
+};
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  gap: "16px",              // 👈 tighter gap
+};
+
+const card = {
+  background: "#fff",
+  padding: "16px",
+  borderRadius: "12px",
+  textAlign: "center",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+};
+
+const img = {
+  width: "100%",
+  height: "180px",
+  objectFit: "contain",
+  borderRadius: "10px",
+  cursor: "pointer",
+};
 
 export default Reviews;

@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import CustomizeTrip from "./pages/CustomizeTrip";
 import Vehicles from "./pages/Vehicles";
 import Reviews from "./pages/Reviews";
+import About from "./pages/About";
 
 
 function App() {

@@ -26,7 +26,7 @@ function Home() {
               Customize Trip
             </Link>
 
-            <Link to="/about" style={link}>
+            <Link to="/about" style={Link}>
               About Us
             </Link>
 

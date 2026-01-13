@@ -25,6 +25,11 @@ function Home() {
             <Link to="/customize" style={secondaryBtn}>
               Customize Trip
             </Link>
+
+            <Link to="/about" style={link}>
+              About Us
+            </Link>
+
           </div>
 
           {/* CALL & WHATSAPP */}

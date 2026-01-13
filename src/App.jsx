@@ -24,7 +24,7 @@ function App() {
         <Route path="/customize" element={<CustomizeTrip />} />
         <Route path="/vehicles" element={<Vehicles />} />
         <Route path="/reviews" element={<Reviews />} />
-
+        <Route path="/about" element={<About />} />
 
 
       </Routes>
